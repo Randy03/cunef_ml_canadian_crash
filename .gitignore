@@ -140,3 +140,7 @@ cython_debug/
 #Extensions
 *.csv
 *.sqlite
+*.txt
+
+#Cache
+/cache
