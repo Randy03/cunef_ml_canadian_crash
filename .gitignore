@@ -142,5 +142,6 @@ cython_debug/
 *.sqlite
 *.txt
 
-#Cache
+#Folders
 /cache
+/saved_models
