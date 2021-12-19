@@ -143,5 +143,5 @@ cython_debug/
 *.txt
 
 #Folders
-/cache
-/saved_models
+*/cache
+*/saved_models
