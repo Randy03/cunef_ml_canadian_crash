@@ -12,13 +12,13 @@ from sklearn.metrics import r2_score,classification_report,f1_score,confusion_ma
 
 
 
-def _fit_pipeline(pipe,xtrain,xtest,ytrain,ytest):
+def _fit_pipeline(pipe,xtrain,xtest,ytrain,ytest,overwrite_saved_models=False):
     model_folder = './saved_models/'
     file_name = re.sub('[^a-zA-Z0-9 \n\.]', '', list(pipe.named_steps.keys())[-1])
     print(file_name)
     if not os.path.exists(model_folder):
         os.makedirs(model_folder)
-    if not Path(model_folder+file_name+'.joblib').is_file():
+    if not Path(model_folder+file_name+'.joblib').is_file() or overwrite_saved_models:
         start_time = time.time()
         logs = 'Model '+file_name+'\n'
         print('Training started')
