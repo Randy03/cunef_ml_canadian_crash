@@ -25,19 +25,10 @@ def _fit_pipeline(pipe,xtrain,xtest,ytrain,ytest,overwrite_saved_models=False):
         pipe.fit(xtrain, ytrain)
         predictions = pipe.predict(xtest)
         execution_time = (time.time() - start_time)
-        #data = {'y_Actual': ytest,'y_Predicted': predictions}
-        #df = pd.DataFrame(data, columns=['y_Actual','y_Predicted'])
-        #confusion_matrix = pd.crosstab(df['y_Actual'], df['y_Predicted'], rownames=['Actual'], colnames=['Predicted'])
-        logs = logs + f'train duration {execution_time} \n'
-        r2score = r2_score(ytest, predictions)
-        logs = logs + f'r2 score: {r2score}\n'
-        try:
-            _confusion_matrix = confusion_matrix(ytest, predictions,normalize='true')
-            logs = logs + f'Confusion matrix \n {_confusion_matrix} \n'
-            f1score = f1_score(ytest, predictions,average='weighted')
-            logs = logs + f'f1 score:  {f1score}\n '
-        except:
-            pass
+        _confusion_matrix = confusion_matrix(ytest, predictions,normalize='true')
+        logs = logs + f'Confusion matrix \n {_confusion_matrix} \n'
+        f1score = f1_score(ytest, predictions,average='weighted')
+        logs = logs + f'f1 score:  {f1score}\n '
         print(logs)
         with open('./logs'+file_name+'.txt', 'w') as f:
             f.write(logs)
